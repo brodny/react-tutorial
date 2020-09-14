@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const numberOfCols = 3;
+const numberOfRows = 3;
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -23,10 +26,10 @@ class Board extends React.Component {
   render() {
     let content = [];
 
-    for (let row = 0; row < 3; row++) {
+    for (let row = 0; row < numberOfRows; row++) {
       let buttons = [];
-      for (let col = 0; col < 3; col++) {
-        buttons.push(this.renderSquare(row * 3 + col));
+      for (let col = 0; col < numberOfCols; col++) {
+        buttons.push(this.renderSquare(row * numberOfCols + col));
       }
 
       content.push(<div className="board-row">{buttons}</div>);
@@ -87,8 +90,8 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const lastClickedSquare = step.lastClickedSquare;
-      const col = (lastClickedSquare % 3) + 1;
-      const row = Math.floor(lastClickedSquare / 3) + 1;
+      const col = (lastClickedSquare % numberOfCols) + 1;
+      const row = Math.floor(lastClickedSquare / numberOfCols) + 1;
 
       const desc = move
         ? 'Go to move #' + move + ' (' + col + ', ' + row + ')'
