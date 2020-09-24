@@ -8,7 +8,7 @@ const numberOfRows = 3;
 function Square(props) {
   return (
     <button
-      className="square"
+      className={'square' + (props.isWon ? ' won-square' : '')}
       onClick={props.onClick}
     >
       {props.value}
